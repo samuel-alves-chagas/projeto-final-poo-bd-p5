@@ -7,9 +7,12 @@ public abstract class Pessoa {
   protected String CPF;
   protected String UF;
 
-  public Pessoa() {
+  public Pessoa(String nome, String CPF, String UF) {
     contador++;
     this.id = contador;
+    this.nome = nome;
+    this.CPF = CPF;
+    this.UF = UF;
   }
 
   public void mostraInfo() {

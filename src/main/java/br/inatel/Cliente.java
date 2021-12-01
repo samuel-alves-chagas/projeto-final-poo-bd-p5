@@ -1,5 +1,9 @@
 package br.inatel;
 
-public abstract class Cliente extends Pessoa {
-  protected int nrProposta;
+public class Cliente extends Pessoa {
+  private int nrProposta;
+
+  public Cliente(String nomeCliente, String cpfCliente, String UFCliente) {
+    super(nomeCliente, cpfCliente, UFCliente);
+  }
 }
