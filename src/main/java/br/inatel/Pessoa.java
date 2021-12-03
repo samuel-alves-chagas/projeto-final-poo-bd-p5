@@ -17,4 +17,12 @@ public abstract class Pessoa {
     System.out.println("O CPF do(a) " + this.nome + " é: " + this.CPF);
     System.out.println("A UF do(a) " + this.nome + " é: " + this.UF);
   }
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
 }

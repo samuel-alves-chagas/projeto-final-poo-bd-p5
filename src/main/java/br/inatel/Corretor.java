@@ -16,6 +16,10 @@ public class Corretor extends Pessoa {
     return corretorasVinculadas;
   }
 
+  public void vinculaCorretora(Corretora novaCorretora) {
+    corretorasVinculadas.add(novaCorretora);
+  }
+
   public ArrayList<String> getNomeCorretorasVinculadas() {
     ArrayList<String> nomes = new ArrayList<String>();
     for (Corretora corretoraVinculada : this.getCorretorasVinculadas()) {
@@ -25,14 +29,11 @@ public class Corretor extends Pessoa {
     return nomes;
   }
 
-  public Exception solicitaVinculo(Corretora corretoraDesejada) {
+  public Boolean solicitaVinculo(Corretora corretoraDesejada) {
     if (this.UF == corretoraDesejada.getUF()) {
-      corretoraDesejada.vincularCorretor(this);
-      this.corretorasVinculadas.add(corretoraDesejada);
-      return null;
-    } else {
-      return new Exception("O corretor " + this.nome + " não possui abrangência para a corretora solicitada");
+      return true;
     }
+    return false;
   }
 
   public ArrayList<Proposta> getPropostasCriadas() {
@@ -53,16 +54,16 @@ public class Corretor extends Pessoa {
     return null;
   }
 
-  public Exception criaProposta(Cliente titular, ArrayList<Cliente> dependentes) {
-    try {
-      Exception err = this.verificaTitular(titular);
-      Proposta novaProposta = new Proposta(this, titular, dependentes);
-      this.propostasCriadas.add(novaProposta);
-      return err;
-    } catch (Exception e) {
-      return e;
-    }
-  }
+  // public Exception criaProposta(Cliente titular) {
+  // try {
+  // Exception err = this.verificaTitular(titular);
+  // Proposta novaProposta = new Proposta(this, titular);
+  // this.propostasCriadas.add(novaProposta);
+  // return err;
+  // } catch (Exception e) {
+  // return e;
+  // }
+  // }
 
   // TODO: mostrar informações das propostas
   public void mostraInfoProposta(Integer nrProposta) {

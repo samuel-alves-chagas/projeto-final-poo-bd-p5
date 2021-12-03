@@ -17,7 +17,7 @@ public class Corretora {
     this.corretoresVinculados = new ArrayList<Corretor>();
   }
 
-  public void vincularCorretor(Corretor novoCorretor) {
+  public void vinculaCorretor(Corretor novoCorretor) {
     this.corretoresVinculados.add(novoCorretor);
   }
 

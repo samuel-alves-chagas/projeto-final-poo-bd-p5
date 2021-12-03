@@ -64,4 +64,29 @@ public class CorretorDB extends Database {
     }
     return idDoCorretor;
   }
+
+  public boolean associaCorretorACorretora(Integer id_corretor, Integer id_corretora) {
+    connect();
+
+    String sql = "INSERT INTO associa(fk_idcorretor, fk_idcorretora) VALUES (?, ?)";
+    try {
+      pst = connection.prepareStatement(sql);
+      pst.setInt(1, id_corretor);
+      pst.setInt(2, id_corretora);
+      pst.execute();
+
+      check = true;
+    } catch (SQLException e) {
+      System.out.println("Erro de operacao: " + e.getMessage());
+      check = false;
+    } finally {
+      try {
+        connection.close();
+        pst.close();
+      } catch (SQLException e) {
+        System.out.println("Erro ao finalizar conexão: " + e.getMessage());
+      }
+    }
+    return check;
+  }
 }

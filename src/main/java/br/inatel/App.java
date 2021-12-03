@@ -16,29 +16,29 @@ public class App {
         corretorDB.adicionarCorretorAoBanco(samuel);
         samuel.id = corretorDB.buscaIDDeCorretor(samuel.CPF);
 
-        // try {
-        // samuel.solicitaVinculo(alianca);
-        // } catch (Exception e) {
-        // System.out.println(e.getMessage());
-        // }
-        // samuel.mostraInfo();
-        // System.out.println("");
+        try {
+            if (samuel.solicitaVinculo(alianca) == true) {
+                corretorDB.associaCorretorACorretora(samuel.id, alianca.getId());
+                samuel.vinculaCorretora(alianca);
+                alianca.vinculaCorretor(samuel);
+            } else {
+                System.out.println(
+                        "O corretor " + samuel.nome
+                                + " não possui abrangência para a corretora solicitada ou não pode se associar à ela");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
-        // System.out.println("Mostrando corretores associados à: " +
-        // alianca.getNome());
-        // System.out.println(alianca.getNomeCorretoresVinculados());
-        // System.out.println("");
+        ClienteDB clienteDB = new ClienteDB();
 
-        // Cliente benedito = new Cliente("Benedito José", "77271238620", "MG");
-        // Cliente delma = new Cliente("Delma Alves", "56489972444", "MG");
-        // Cliente maira = new Cliente("Maira Alves", "78965432119", "MG");
+        Cliente benedito = new Cliente("Benedito José", "77271238620", "MG");
+        clienteDB.adicionarCliente(benedito);
+        benedito.setId(clienteDB.buscaIDDeCliente(benedito.nome));
 
-        // ArrayList<Cliente> dependentes = new ArrayList<Cliente>();
-        // dependentes.add(delma);
-        // dependentes.add(maira);
-        // samuel.criaProposta(benedito, dependentes);
-
-        // System.out.println("Mostrando info do corretor: ");
-        // samuel.mostraInfo();
+        PropostaDB propostaDB = new PropostaDB();
+        Proposta novaProposta = new Proposta(samuel, benedito, 51, 239.74);
+        propostaDB.adicionarPropostaAoBanco(novaProposta);
+        novaProposta.setNrProposta(propostaDB.buscaNrProposta(novaProposta.getTitular().CPF));
     }
 }
