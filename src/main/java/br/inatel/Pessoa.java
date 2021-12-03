@@ -1,15 +1,12 @@
 package br.inatel;
 
 public abstract class Pessoa {
-  public static int contador;
   protected int id;
   protected String nome;
   protected String CPF;
   protected String UF;
 
   public Pessoa(String nome, String CPF, String UF) {
-    contador++;
-    this.id = contador;
     this.nome = nome;
     this.CPF = CPF;
     this.UF = UF;

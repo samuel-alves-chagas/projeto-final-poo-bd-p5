@@ -3,15 +3,15 @@ package br.inatel;
 import java.util.ArrayList;
 
 public class Corretora {
-  public static int contador;
   private int id;
   private String nome;
   private String UF;
   private ArrayList<Corretor> corretoresVinculados;
 
+  public Corretora() {
+  }
+
   public Corretora(String nomeCorretora, String UFCorretora) {
-    contador++;
-    this.id = contador;
     this.nome = nomeCorretora;
     this.UF = UFCorretora;
     this.corretoresVinculados = new ArrayList<Corretor>();
@@ -43,6 +43,10 @@ public class Corretora {
 
   public int getId() {
     return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getNome() {

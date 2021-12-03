@@ -3,15 +3,12 @@ package br.inatel;
 import java.util.ArrayList;
 
 public class Proposta {
-  public static int contador;
   private int nrProposta;
   private Corretor corretor;
   private Cliente titular;
   private ArrayList<Cliente> dependentes;
 
   public Proposta(Corretor corretor, Cliente titular, ArrayList<Cliente> dependentes) {
-    contador++;
-    this.nrProposta = contador;
     this.corretor = corretor;
     this.titular = titular;
     this.dependentes = new ArrayList<Cliente>();
