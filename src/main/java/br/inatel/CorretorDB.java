@@ -1,6 +1,5 @@
 package br.inatel;
 
-import java.util.ArrayList;
 import java.sql.SQLException;
 
 public class CorretorDB extends Database {
@@ -88,5 +87,77 @@ public class CorretorDB extends Database {
       }
     }
     return check;
+  }
+
+  public Integer buscaDeIdCorretorPeloNrProposta(Integer nrProposta) {
+    connect();
+
+    String sql = "SELECT fk_idcorretor FROM proposta WHERE nrProposta=? ORDER BY nrProposta DESC LIMIT 1";
+    Integer id_corretor = 0;
+
+    try {
+
+      // Preparando o statement
+      pst = connection.prepareStatement(sql);
+      pst.setInt(1, nrProposta);
+
+      // Executando o statement
+      result = pst.executeQuery();
+
+      while (result.next()) {
+
+        id_corretor = result.getInt("fk_idCorretor");
+        check = true;
+      }
+    } catch (SQLException e) {
+      System.out.println("Erro de operação: " + e.getMessage());
+    } finally {
+      try {
+        connection.close();
+        pst.close();
+        result.close();
+      } catch (SQLException e) {
+        System.out.println("Erro ao fechar a conexão: " + e.getMessage());
+      }
+    }
+    return id_corretor;
+  }
+
+  public Corretor buscaCorretorPorID(Integer id_corretor) {
+    connect();
+
+    String sql = "SELECT * FROM corretor WHERE id_corretor=? ORDER BY id_corretor DESC LIMIT 1";
+    Corretor corretorEncontrado = new Corretor();
+
+    try {
+
+      // Preparando o statement
+      pst = connection.prepareStatement(sql);
+      pst.setInt(1, id_corretor);
+
+      // Executando o statement
+      result = pst.executeQuery();
+
+      while (result.next()) {
+
+        corretorEncontrado.id = id_corretor;
+        corretorEncontrado.nome = result.getString("nome");
+        corretorEncontrado.UF = result.getString("uf");
+        corretorEncontrado.CPF = result.getString("cpf");
+
+        check = true;
+      }
+    } catch (SQLException e) {
+      System.out.println("Erro de operação: " + e.getMessage());
+    } finally {
+      try {
+        connection.close();
+        pst.close();
+        result.close();
+      } catch (SQLException e) {
+        System.out.println("Erro ao fechar a conexão: " + e.getMessage());
+      }
+    }
+    return corretorEncontrado;
   }
 }

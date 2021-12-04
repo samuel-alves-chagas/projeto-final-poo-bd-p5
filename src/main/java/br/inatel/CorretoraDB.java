@@ -1,6 +1,5 @@
 package br.inatel;
 
-import java.util.ArrayList;
 import java.sql.SQLException;
 
 public class CorretoraDB extends Database {

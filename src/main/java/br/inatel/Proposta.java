@@ -1,7 +1,5 @@
 package br.inatel;
 
-import java.util.ArrayList;
-
 public class Proposta {
   private int nrProposta;
   private int idade;
@@ -9,19 +7,27 @@ public class Proposta {
   private Corretor corretor;
   private Cliente titular;
 
+  public Proposta() {
+  }
+
   public Proposta(Corretor corretor, Cliente titular, Integer idade, double valor) {
     this.corretor = corretor;
     this.titular = titular;
     this.idade = idade;
+
+  }
+
+  public void calculaValor() {
     if (idade > 50)
-      this.valor = valor + (valor * idade) / 250;
+      this.valor = 239.74 + (valor * idade) / 250;
     else
-      this.valor = valor - (valor * idade) / 100;
+      this.valor = 239.74 - (valor * idade) / 100;
   }
 
   public void mostraInfo() {
-    System.out.println("Proposta número " + this.getNrProposta());
-    System.out.println("Titular: " + this.getTitular());
+    System.out.println("Número: " + this.getNrProposta());
+    System.out.println("Valor da proposta: " + this.getValor());
+    System.out.println("Idade do titular: " + this.getIdade());
   }
 
   public int getNrProposta() {
